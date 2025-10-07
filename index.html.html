@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Idah Omondi — Embedded Systems & AI</title>
+  <meta name="description" content="Idah Omondi — Electronic & Computer Engineering Student | Embedded Systems & AI Enthusiast" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* --------------------
+       GLOBAL & THEME
+       -------------------- */
+    :root{
+      --bg:#0b0f14;
+      --panel:#0f1720;
+      --muted:#9aa6b2;
+      --accent:#4ee1ff;
+      --accent-2:#7b61ff;
+      --glass: rgba(255,255,255,0.04);
+      --card: rgba(255,255,255,0.03);
+      --radius:12px;
+      --maxw:1100px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color: #e6eef6;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 400px at 10% 10%, rgba(123,97,255,0.07), transparent 6%),
+                  radial-gradient(1000px 350px at 90% 90%, rgba(78,225,255,0.05), transparent 6%),
+                  var(--bg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      overflow-x:hidden;
+    }
+
+    /* subtle blur layer for glow */
+    .bg-glow{
+      position:fixed; inset:0; z-index:0; pointer-events:none; mix-blend-mode:screen;
+    }
+    .container{max-width:var(--maxw); margin:0 auto; padding:48px 22px; position:relative; z-index:5}
+
+    /* Header */
+    header{
+      display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:28px;
+    }
+    .brand{display:flex; align-items:center; gap:16px}
+    .avatar{
+      width:72px; height:72px; border-radius:12px; background:linear-gradient(135deg,var(--accent-2),var(--accent)); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:20px; box-shadow: 0 6px 18px rgba(123,97,255,0.08);
+    }
+    .brand h1{margin:0; font-size:18px; letter-spacing:0.2px}
+    .brand p{margin:0; color:var(--muted); font-size:13px}
+
+    nav{display:flex; gap:12px; align-items:center}
+    .nav-link{color:var(--muted); text-decoration:none; font-size:14px; padding:8px 12px; border-radius:8px}
+    .nav-link:hover{background:rgba(255,255,255,0.02); color:#fff}
+
+    /* Hero */
+    .hero{
+      display:grid; grid-template-columns:1fr 340px; gap:28px; align-items:center; margin-top:10px; margin-bottom:40px;
+    }
+    .hero-left{padding:26px; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border-radius:16px; box-shadow: 0 10px 30px rgba(2,6,23,0.6);}
+    .tagline{color:var(--accent); font-weight:600; font-size:13px; letter-spacing:0.6px}
+    .hero-left h2{margin:12px 0 8px; font-size:28px}
+    .hero-left p{margin:0; color:var(--muted)}
+    .cta-row{display:flex; gap:12px; margin-top:20px}
+    .btn{background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#021016; border:none; padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:600}
+    .btn-ghost{background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted)}
+
+    /* right card */
+    .hero-right{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); padding:18px; border-radius:16px}
+    .profile-photo{width:100%; height:260px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.2)); border-radius:12px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:13px}
+    .profile-info{display:flex; gap:10px; margin-top:12px; align-items:center}
+    .info-item{flex:1; background:var(--card); padding:10px; border-radius:10px; text-align:center}
+    .info-item h4{margin:0 0 6px 0}
+    .info-item p{margin:0; color:var(--muted); font-size:13px}
+
+    /* Sections */
+    section{margin-bottom:42px}
+    .section-title{display:flex; align-items:center; gap:12px; margin-bottom:16px}
+    .section-title h3{margin:0}
+    .muted{color:var(--muted)}
+
+    /* Skills grid */
+    .skills{display:flex; flex-wrap:wrap; gap:10px}
+    .skill{background:var(--glass); padding:8px 10px; border-radius:8px; font-size:13px; color:var(--muted)}
+
+    /* Projects */
+    .projects{display:grid; grid-template-columns:repeat(2,1fr); gap:14px}
+    .project-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); padding:16px; border-radius:12px; box-shadow: 0 6px 18px rgba(0,0,0,0.6)}
+    .project-card h4{margin:0 0 6px}
+    .project-card p{margin:0 0 12px; color:var(--muted); font-size:14px}
+    .project-meta{display:flex; gap:10px; flex-wrap:wrap}
+    .meta{background:rgba(255,255,255,0.03); padding:6px 8px; border-radius:8px; font-size:12px; color:var(--muted)}
+
+    /* Contact */
+    .contact-card{background:var(--card); padding:16px; border-radius:12px; display:flex; gap:16px; align-items:center}
+    .contact-info{flex:1}
+    .contact-links a{display:inline-block; margin-right:12px; color:var(--accent)}
+
+    footer{margin-top:30px; text-align:center; color:var(--muted); font-size:13px}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .projects{grid-template-columns:1fr}
+      .hero-right{order:2}
+    }
+
+    /* small helper */
+    .note{font-size:13px; color:var(--muted)}
+
+  </style>
+</head>
+<body>
+
+  <!-- Canvas for network nodes animation -->
+  <canvas id="nodesCanvas" class="bg-glow"></canvas>
+
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="avatar">IO</div>
+        <div>
+          <h1>Idah Omondi</h1>
+          <p>Electronic & Computer Engineering Student | Embedded Systems & AI Enthusiast</p>
+        </div>
+      </div>
+      <nav>
+        <a class="nav-link" href="#home">Home</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="hero-left">
+        <div class="tagline">Bridging the gap between intelligent hardware and human innovation.</div>
+        <h2>Hi, I’m Idah — I build intelligent systems that connect hardware, software, and people.</h2>
+        <p>I’m an Electronic & Computer Engineering student passionate about embedded systems, IoT, and artificial intelligence. I design practical, human-centered solutions — from PCB design and microcontroller firmware to AI-powered wearables and cloud-integrated systems.</p>
+
+        <div class="cta-row">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn btn-ghost" href="#contact">Contact Me</a>
+        </div>
+
+        <div style="margin-top:18px" class="note">Available for internships and collaborative projects. Currently building an AI-powered assistive glove (CareCom).</div>
+      </div>
+
+      <aside class="hero-right">
+        <!-- Placeholder for photo -->
+        <div class="profile-photo" id="photoPlaceholder">
+          <!-- Replace this placeholder image by updating the src in the HTML where noted. -->
+          <div style="text-align:center; padding:16px;">
+            <div style="font-weight:600; margin-bottom:8px">Profile Photo</div>
+            <div class="muted" style="font-size:12px">Add your photo by replacing the placeholder in the HTML</div>
+          </div>
+        </div>
+
+        <div class="profile-info">
+          <div class="info-item">
+            <h4>Location</h4>
+            <p>Nairobi, Kenya</p>
+          </div>
+          <div class="info-item">
+            <h4>Contact</h4>
+            <p>idahamondi37@gmail.com</p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-title">
+        <h3>Projects</h3>
+        <span class="muted">(Top 4 — more coming soon)</span>
+      </div>
+
+      <div class="projects">
+        <!-- Project 1: Smart Water Irrigation -->
+        <article class="project-card">
+          <h4>Smart Water Irrigation System 🌱</h4>
+          <p>An IoT-based irrigation solution featuring custom PCB design and a mobile app for remote control. Uses soil moisture sensing and timed scheduling to save water and improve crop health.</p>
+          <div class="project-meta">
+            <div class="meta">ESP32</div>
+            <div class="meta">Custom PCB</div>
+            <div class="meta">Mobile App</div>
+          </div>
+        </article>
+
+        <!-- Project 2: Lift Control -->
+        <article class="project-card">
+          <h4>Microcontroller-Based Lift Control System 🏢</h4>
+          <p>Programmable elevator control with LCD floor display, relay-actuated motor control and safety timing logic. Designed for reliable and smooth floor transitions.</p>
+          <div class="project-meta">
+            <div class="meta">Arduino / AVR</div>
+            <div class="meta">LCD Interface</div>
+            <div class="meta">Control Logic</div>
+          </div>
+        </article>
+
+        <!-- Project 3: Smart Meter Bypass -->
+        <article class="project-card">
+          <h4>Smart Meter Bypass & Automatic Load Transfer (Simulation) ⚡</h4>
+          <p>Simulated in Wokwi: automatic power switching and tamper detection logic for smart meters. Demonstrates control strategies for load transfer and power reliability.</p>
+          <div class="project-meta">
+            <div class="meta">Wokwi Simulation</div>
+            <div class="meta">Power Systems</div>
+            <div class="meta">Embedded Control</div>
+          </div>
+        </article>
+
+        <!-- Project 4: Warehouse Robot -->
+        <article class="project-card">
+          <h4>Warehouse Robot 🤖</h4>
+          <p>Participated in the development of a semi-autonomous warehouse robot for transporting goods. Focused on sensor integration and motion control logic.</p>
+          <div class="project-meta">
+            <div class="meta">Robotics</div>
+            <div class="meta">Sensors</div>
+            <div class="meta">Control</div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-title"><h3>Skills</h3></div>
+      <div class="skills">
+        <div class="skill">C / C++</div>
+        <div class="skill">Python</div>
+        <div class="skill">Embedded Systems</div>
+        <div class="skill">ESP32 / ESP-12S</div>
+        <div class="skill">PCB Design</div>
+        <div class="skill">Proteus / Wokwi</div>
+        <div class="skill">TensorFlow / Edge Impulse</div>
+        <div class="skill">Cisco Packet Tracer</div>
+        <div class="skill">Assembly (Intel 8086)</div>
+        <div class="skill">Git & GitHub</div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-title"><h3>Contact</h3></div>
+      <div class="contact-card">
+        <div class="contact-info">
+          <h4>Get in touch</h4>
+          <p class="muted">I’m open to internships, collaborations, and mentorship opportunities. Feel free to reach out — I usually respond within a few days.</p>
+          <div style="margin-top:10px" class="contact-links">
+            <a href="mailto:idahamondi37@gmail.com">Email</a>
+            <a href="https://github.com/idahamondi" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/idah-omondi-395153368" target="_blank">LinkedIn</a>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:13px; color:var(--muted)">Download CV</div>
+          <a class="btn" href="#">Coming Soon</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>© <span id="year"></span> Idah Omondi — Embedded Systems & AI Enthusiast</footer>
+  </div>
+
+
+  <script>
+    // -------------------------
+    // SMALL HELPERS & DYNAMIC
+    // -------------------------
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a.nav-link, a.btn[href^="#"]').forEach(el=>{
+      el.addEventListener('click', e=>{
+        const href = el.getAttribute('href');
+        if(href && href.startsWith('#')){
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({behavior:'smooth'});
+        }
+      })
+    });
+
+    /* ---------------------------------------
+       Animated network nodes background
+       - Canvas draws moving nodes connected by lines
+       - Subtle glow achieved with shadow + radial gradients
+       --------------------------------------- */
+    (function(){
+      const canvas = document.getElementById('nodesCanvas');
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = window.innerWidth;
+      let h = canvas.height = window.innerHeight;
+      const opts = {
+        count: Math.floor((w*h)/70000), // adapt to screen size
+        maxDist: 140,
+        nodeRadius: 1.6,
+        speed: 0.35
+      };
+
+      // Create nodes
+      const nodes = [];
+      function rand(min,max){return Math.random()*(max-min)+min}
+      for(let i=0;i<opts.count;i++){
+        nodes.push({
+          x: Math.random()*w,
+          y: Math.random()*h,
+          vx: rand(-opts.speed, opts.speed),
+          vy: rand(-opts.speed, opts.speed)
+        });
+      }
+
+      function resize(){
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', ()=>{
+        resize();
+      });
+
+      function draw(){
+        ctx.clearRect(0,0,w,h);
+
+        // subtle layered glow radial centered (adds the soft tech glow)
+        const g = ctx.createRadialGradient(w*0.15,h*0.12,50,w*0.5,h*0.6, Math.max(w,h));
+        g.addColorStop(0,'rgba(123,97,255,0.06)');
+        g.addColorStop(0.35,'rgba(78,225,255,0.03)');
+        g.addColorStop(1,'rgba(0,0,0,0)');
+        ctx.fillStyle = g;
+        ctx.fillRect(0,0,w,h);
+
+        // draw connections
+        for(let i=0;i<nodes.length;i++){
+          const a = nodes[i];
+          // move
+          a.x += a.vx; a.y += a.vy;
+          if(a.x<0||a.x>w) a.vx *= -1;
+          if(a.y<0||a.y>h) a.vy *= -1;
+
+          // draw node
+          ctx.beginPath();
+          ctx.arc(a.x,a.y, opts.nodeRadius,0,Math.PI*2);
+          ctx.fillStyle = 'rgba(126,180,255,0.95)';
+          ctx.shadowColor = 'rgba(78,225,255,0.18)';
+          ctx.shadowBlur = 10;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+
+          // connections
+          for(let j=i+1;j<nodes.length;j++){
+            const b = nodes[j];
+            const dx = a.x-b.x; const dy = a.y-b.y; const dist = Math.sqrt(dx*dx+dy*dy);
+            if(dist < opts.maxDist){
+              const alpha = 1 - (dist/opts.maxDist);
+              ctx.beginPath();
+              ctx.moveTo(a.x,a.y);
+              ctx.lineTo(b.x,b.y);
+              ctx.strokeStyle = `rgba(110,200,255,${0.08*alpha})`;
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+    })();
+
+    /* -------------------------
+       QUICK NOTES (edit tips)
+       -------------------------
+       - To replace the profile photo: edit the <div id="photoPlaceholder"> block in the HTML.
+         Replace it with: <img src="path/to/your-photo.jpg" alt="Idah Omondi" style="width:100%; height:260px; object-fit:cover; border-radius:12px" />
+
+       - To add another project: duplicate a .project-card article in the Projects section and edit the content.
+
+       - To change the email or links: edit the anchors in the Contact section.
+
+       - To host on GitHub Pages: upload this single file as index.html to your repo (instructions in the accompanying guide).
+    */
+  </script>
+</body>
+</html>
