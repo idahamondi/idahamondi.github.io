@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Projects — Idah Omondi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      
+<header>
+  <div class="photo-wrap">
+    <img src="assets/profile.jpg" alt="Profile">
+  </div>
+  <h1>Idah Omondi</h1>
+  <p class="lead">Electronic &amp; Computer Engineering Student • Embedded Systems &amp; AI Enthusiast<br><strong>Bridging intelligent hardware with human-centered solutions.</strong></p>
+  <nav class="nav" aria-label="Top navigation">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="projects.html" class="nav-link">My Projects</a>
+    <a href="resume.html" class="nav-link">Resume</a>
+    <a href="skills.html" class="nav-link">Skills</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+  </nav>
+</header>
+
+      <main>
+        <section id="projects" class="section fade show">
+          <h2>My Projects</h2>
+          <div class="category">
+            <h3>Embedded Systems &amp; IoT</h3>
+            <div class="proj-grid" style="margin-top:10px">
+              <article class="proj">
+                <h4>Smart Water Irrigation System</h4>
+                <p>I developed a smart irrigation system with a custom PCB and mobile app to automate watering using soil moisture sensing.</p>
+                <div class="chips"><span class="chip">ESP32</span><span class="chip">PCB Design</span><span class="chip">Mobile App</span></div>
+              </article>
+              <article class="proj">
+                <h4>Microcontroller-Based Lift Control</h4>
+                <p>I implemented a microcontroller-based lift controller with LCD feedback, relay-driven motor control, and emergency alert logic.</p>
+                <div class="chips"><span class="chip">Arduino</span><span class="chip">LCD</span><span class="chip">Relays</span></div>
+              </article>
+              <article class="proj">
+                <h4>Smart Meter Bypass &amp; Automatic Load Transfer (Wokwi)</h4>
+                <p>I developed and simulated an automated system to detect meter bypass and switch to backup loads for reliable power delivery.</p>
+                <div class="chips"><span class="chip">Wokwi</span><span class="chip">Embedded</span><span class="chip">Power</span></div>
+              </article>
+              <article class="proj">
+                <h4>Warehouse Robot</h4>
+                <p>I participated in a semi-autonomous warehouse robot project focused on sensor integration and motion control for logistics.</p>
+                <div class="chips"><span class="chip">Robotics</span><span class="chip">Sensors</span><span class="chip">Control</span></div>
+              </article>
+            </div>
+          </div>
+          <div class="category">
+            <h3>Software &amp; Networking</h3>
+            <div class="proj-grid" style="margin-top:10px">
+              <article class="proj">
+                <h4>Telecommunications Network Management System</h4>
+                <p>System design for monitoring, fault management and analytics in telecom operations.</p>
+                <div class="chips"><span class="chip">Network Design</span><span class="chip">Databases</span></div>
+              </article>
+              <article class="proj">
+                <h4>Packet Tracer Simulations</h4>
+                <p>Simulated routing, VLANs, and WAN setups to troubleshoot and validate network configurations.</p>
+                <div class="chips"><span class="chip">Cisco Packet Tracer</span><span class="chip">Routing</span></div>
+              </article>
+            </div>
+          </div>
+          <div class="category">
+            <h3>Robotics &amp; Hardware</h3>
+            <div class="proj-grid" style="margin-top:10px">
+              <article class="proj">
+                <h4>Transync</h4>
+                <p>I collaborated on Transync — a smart asset tracking system integrating OCR devices, mobile and web apps for transport operators.</p>
+                <div class="chips"><span class="chip">OCR</span><span class="chip">Python</span></div>
+              </article>
+              <article class="proj">
+                <h4>Warehouse Robot (photo)</h4>
+                <p>Worked on the robot's control logic and sensor integration; photos available on request.</p>
+                <div class="chips"><span class="chip">Robotics</span><span class="chip">Integration</span></div>
+              </article>
+            </div>
+          </div>
+          <div class="category">
+            <h3>Low-Level Programming</h3>
+            <div class="proj-grid" style="margin-top:10px">
+              <article class="proj">
+                <h4>Intel 8086 Assembly Experiments</h4>
+                <p>Developed assembly routines to manipulate strings and a 10×10 character array displayed on an LCD, demonstrating memory and addressing techniques.</p>
+                <div class="chips"><span class="chip">8086 Assembly</span><span class="chip">Microprocessors</span></div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer style="margin-top:18px; text-align:center; color:var(--muted); font-size:13px">© 2025 Idah Omondi</footer>
+    </div>
+  </div>
+  <a class="top-link" href="index.html#home" title="Top" style="display:none; background:linear-gradient(90deg,var(--teal),var(--teal-2)); padding:8px 10px; border-radius:10px; color:#021617; text-decoration:none" id="topBtn">Top</a>
+  
+<script>
+// reveal on scroll
+const faders = document.querySelectorAll('.fade');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting) en.target.classList.add('show');
+  })
+}, {threshold:0.15});
+faders.forEach(f=>io.observe(f));
+
+// top button
+const topBtn = document.getElementById('topBtn');
+if(topBtn){
+  window.addEventListener('scroll', ()=>{
+    if(window.scrollY > 400){ topBtn.style.display = 'inline-block'; } else { topBtn.style.display = 'none'; }
+  });
+}
+</script>
+
+</body>
+</html>

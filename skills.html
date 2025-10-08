@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Skills — Idah Omondi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      
+<header>
+  <div class="photo-wrap">
+    <img src="assets/profile.jpg" alt="Profile">
+  </div>
+  <h1>Idah Omondi</h1>
+  <p class="lead">Electronic &amp; Computer Engineering Student • Embedded Systems &amp; AI Enthusiast<br><strong>Bridging intelligent hardware with human-centered solutions.</strong></p>
+  <nav class="nav" aria-label="Top navigation">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="projects.html" class="nav-link">My Projects</a>
+    <a href="resume.html" class="nav-link">Resume</a>
+    <a href="skills.html" class="nav-link">Skills</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+  </nav>
+</header>
+
+      <main>
+        <section id="skills" class="section fade show">
+          <h2>Skills</h2>
+          <div class="skills" style="margin-top:12px">
+            <div class="skill">C / C++</div>
+            <div class="skill">Python</div>
+            <div class="skill">Embedded Systems</div>
+            <div class="skill">ESP32 / ESP-12S</div>
+            <div class="skill">PCB Design</div>
+            <div class="skill">Proteus / Wokwi</div>
+            <div class="skill">TensorFlow / Edge Impulse</div>
+            <div class="skill">Cisco Packet Tracer</div>
+            <div class="skill">Assembly (8086)</div>
+            <div class="skill">Git &amp; GitHub</div>
+          </div>
+        </section>
+      </main>
+      <footer style="margin-top:18px; text-align:center; color:var(--muted); font-size:13px">© 2025 Idah Omondi</footer>
+    </div>
+  </div>
+  <a class="top-link" href="index.html#home" title="Top" style="display:none; background:linear-gradient(90deg,var(--teal),var(--teal-2)); padding:8px 10px; border-radius:10px; color:#021617; text-decoration:none" id="topBtn">Top</a>
+  
+<script>
+// reveal on scroll
+const faders = document.querySelectorAll('.fade');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting) en.target.classList.add('show');
+  })
+}, {threshold:0.15});
+faders.forEach(f=>io.observe(f));
+
+// top button
+const topBtn = document.getElementById('topBtn');
+if(topBtn){
+  window.addEventListener('scroll', ()=>{
+    if(window.scrollY > 400){ topBtn.style.display = 'inline-block'; } else { topBtn.style.display = 'none'; }
+  });
+}
+</script>
+
+</body>
+</html>

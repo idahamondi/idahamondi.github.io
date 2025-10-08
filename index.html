@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Idah Omondi | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <canvas id="bgCanvas" class="bg-canvas"></canvas>
+      
+<header>
+  <div class="photo-wrap">
+    <img src="assets/profile.jpg" alt="Profile">
+  </div>
+  <h1>Idah Omondi</h1>
+  <p class="lead">Electronic &amp; Computer Engineering Student • Embedded Systems &amp; AI Enthusiast<br><strong>Bridging intelligent hardware with human-centered solutions.</strong></p>
+  <nav class="nav" aria-label="Top navigation">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="projects.html" class="nav-link">My Projects</a>
+    <a href="resume.html" class="nav-link">Resume</a>
+    <a href="skills.html" class="nav-link">Skills</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+  </nav>
+</header>
+
+      <main>
+        <section id="home" class="section fade show intro-card">
+          <p style="margin:0" class="muted">Available for internships and collaborations. Currently developing an AI-powered assistive glove (CareCom).</p>
+        </section>
+      </main>
+      <footer style="margin-top:18px; text-align:center; color:var(--muted); font-size:13px">© 2025 Idah Omondi</footer>
+    </div>
+  </div>
+  <a class="top-link" href="index.html#home" title="Top" style="display:none; background:linear-gradient(90deg,var(--teal),var(--teal-2)); padding:8px 10px; border-radius:10px; color:#021617; text-decoration:none" id="topBtn">Top</a>
+  
+<script>
+// reveal on scroll
+const faders = document.querySelectorAll('.fade');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting) en.target.classList.add('show');
+  })
+}, {threshold:0.15});
+faders.forEach(f=>io.observe(f));
+
+// top button
+const topBtn = document.getElementById('topBtn');
+if(topBtn){
+  window.addEventListener('scroll', ()=>{
+    if(window.scrollY > 400){ topBtn.style.display = 'inline-block'; } else { topBtn.style.display = 'none'; }
+  });
+}
+</script>
+
+  <script>
+  // simple animated node background (teal)
+  (function(){
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = window.innerWidth;
+    let h = canvas.height = window.innerHeight;
+    const opts = {count: Math.floor((w*h)/90000), maxDist:120, radius:1.6, speed:0.28};
+    const nodes = [];
+    function rand(a,b){return Math.random()*(b-a)+a}
+    for(let i=0;i<opts.count;i++) nodes.push({x:rand(0,w), y:rand(0,h), vx:rand(-opts.speed,opts.speed), vy:rand(-opts.speed,opts.speed)});
+    window.addEventListener('resize', ()=>{ w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; });
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      const g = ctx.createRadialGradient(w*0.2,h*0.12,80,w*0.6,h*0.6, Math.max(w,h));
+      g.addColorStop(0,'rgba(45,230,214,0.05)'); g.addColorStop(0.4,'rgba(31,184,176,0.03)'); g.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.fillStyle = g; ctx.fillRect(0,0,w,h);
+      for(let i=0;i<nodes.length;i++){
+        const a = nodes[i]; a.x+=a.vx; a.y+=a.vy; if(a.x<0||a.x>w) a.vx*=-1; if(a.y<0||a.y>h) a.vy*=-1;
+        ctx.beginPath(); ctx.arc(a.x,a.y, opts.radius,0,Math.PI*2); ctx.fillStyle='rgba(45,230,214,0.95)'; ctx.shadowColor='rgba(45,230,214,0.14)'; ctx.shadowBlur=12; ctx.fill(); ctx.shadowBlur=0;
+        for(let j=i+1;j<nodes.length;j++){ const b = nodes[j]; const dx = a.x-b.x; const dy = a.y-b.y; const d = Math.sqrt(dx*dx+dy*dy); if(d < opts.maxDist){ const alpha = 1-(d/opts.maxDist); ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.strokeStyle = `rgba(45,230,214,${0.06*alpha})`; ctx.lineWidth = 1; ctx.stroke(); } }
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+  </script>
+</body>
+</html>
